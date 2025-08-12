@@ -3,8 +3,14 @@
   src: url("./assets/fonts/Apricot-BF650c4a6357ce1.otf")
 }
 
+@font-face{
+  font-family: ActHand;
+  src: url("./assets/fonts/EduNSWACTCursive-VariableFont_wght.ttf")
+}
+
 @import "tailwindcss";
 
 @theme{
   --font-apricots: Apricots, "sans-serif";
+  --font-acthand:ActHand, "sans-serif"
 }
