@@ -1,3 +1,4 @@
+import ListMovies from "./components/ListMovies"
 import NavBar from "./components/NavBar"
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
     <header className="lg:mx-15 py-3">
       <NavBar/>
     </header>
-    <main>
+    <main className="mx-16 my-10">
+      <ListMovies/>
     </main>
     <footer></footer>
     </>
