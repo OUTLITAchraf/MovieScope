@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 
 export default function ListMovies() {
     const api_key = import.meta.env.VITE_API_KEY;
-    const BASE_URL = "https://api.themoviedb.org/3";
-    const API_URL_MOVIES_TOP_RATED = `${BASE_URL}/movie/top_rated?api_key=${api_key}`;
-    const API_URL_MOVIES_POPULAIRE = `${BASE_URL}/movie/popular?api_key=${api_key}`;
-    const API_URL_MOVIES_UPCOMING = `${BASE_URL}/movie/upcoming?api_key=${api_key}`;
+    const BASE_URL = "https://api.themoviedb.org/3/movie";
+    const API_URL_MOVIES_TOP_RATED = `${BASE_URL}/top_rated?api_key=${api_key}`;
+    const API_URL_MOVIES_POPULAIRE = `${BASE_URL}/popular?api_key=${api_key}`;
+    const API_URL_MOVIES_UPCOMING = `${BASE_URL}/upcoming?api_key=${api_key}`;
     const [moviesTopRated, setMoviesTopRated] = useState([]);
     const [moviesPopulaire, setMoviesPopulaire] = useState([]);
     const [moviesUpcoming, setMoviesUpcoming] = useState([]);

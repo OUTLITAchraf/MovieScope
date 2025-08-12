@@ -1,5 +1,6 @@
 import ListMovies from "./components/ListMovies"
 import NavBar from "./components/NavBar"
+import NavBarFooter from "./components/NavBarFooter"
 
 function App() {
 
@@ -11,7 +12,9 @@ function App() {
     <main className="mx-16 my-10">
       <ListMovies/>
     </main>
-    <footer></footer>
+    <footer className="flex flex-row items-center mx-15 pb-5 justify-between text-white text-lg">
+      <NavBarFooter/>
+    </footer>
     </>
   )
 }
