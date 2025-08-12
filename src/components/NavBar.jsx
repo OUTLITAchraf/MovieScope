@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
 import Logo from '../assets/MovieScope-Logo2.png'
-export default function NavBar() {
+import { useNavigate } from 'react-router-dom';
+
+export default function NavBar({onSearch }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [movieName, setMovieName] = useState("");
+    const navigate = useNavigate();
+
+    const handleSearch = () => {
+    if (movieName.trim() !== "") {
+      navigate(`/search/${encodeURIComponent(movieName)}`);
+    }
+  };
+
     return (
         <>
             <nav className="flex flex-col mx-3 lg:mx-0 lg:flex-row lg:justify-between">
                 <div className="flex justify-between items-center">
-                    <div className='flex items-center flex-row'>
+                    <a href="/" className='flex items-center flex-row'>
                         <img src={Logo} alt="LogoSite" className='w-[50px] h-[50px] lg:w-[70px] lg:h-[70px]' />
                         <span className='font-apricots text-4xl lg:text-5xl text-[#0097b2] pb-3 lg:pb-5'>moviescope</span>
-                    </div>
+                    </a>
 
                     {/* Toggle button visible on small screens only */}
                     <button
@@ -50,7 +61,7 @@ export default function NavBar() {
                         } lg:block`}
                 >
                     <div className='flex flex-col text-white text-lg font-semibold ml-2 space-y-5 lg:flex-row lg:mx-60 lg:space-y-0 lg:space-x-15'>
-                        <a href="" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>Home</a>
+                        <a href="/" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>Home</a>
                         <a href="" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>List Movies</a>
                         <a href="" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>About</a>
                     </div>
@@ -60,8 +71,11 @@ export default function NavBar() {
                             type="text"
                             className="lg:w-62 py-2 px-3 border border-white text-white focus:outline-2 focus:outline-[#0097b2] focus:border-[#0097b2] rounded-2xl bg-transparent"
                             placeholder="Searching a movie ..."
+                            onChange={(e) => setMovieName(e.target.value)}
                         />
-                        <button className="flex flex-row items-center justify-center text-lg text-white gap-2 bg-[#0097b2] py-2 px-3 rounded-2xl">
+                        <button 
+                        onClick={handleSearch}
+                        className="flex flex-row items-center justify-center text-lg text-white gap-2 bg-[#0097b2] py-2 px-3 rounded-2xl">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
