@@ -1,0 +1,10 @@
+@font-face{
+  font-family: Apricots;
+  src: url("./assets/fonts/Apricot-BF650c4a6357ce1.otf")
+}
+
+@import "tailwindcss";
+
+@theme{
+  --font-apricots: Apricots, "sans-serif";
+}
