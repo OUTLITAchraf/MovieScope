@@ -75,7 +75,7 @@ export default function NavBar({onSearch }) {
                         />
                         <button 
                         onClick={handleSearch}
-                        className="flex flex-row items-center justify-center text-lg text-white gap-2 bg-[#0097b2] py-2 px-3 rounded-2xl">
+                        className="flex flex-row items-center justify-center text-lg text-white gap-2 bg-[#0097b2] py-2 px-3 rounded-2xl hover:bg-[#00697b] cursor-pointer">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
