@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import FadeSlide from "./SliderMovies";
 
 export default function ListMovies() {
   const api_key = import.meta.env.VITE_API_KEY;
@@ -29,7 +30,7 @@ export default function ListMovies() {
       .then((res) => res.json())
       .then((data) => setMoviesUpcoming(data.results))
       .catch((err) => console.log(err));
-  });
+  }, []);
 
   const currentMoviesTopRated = moviesTopRated.slice(
     pageTopRated * moviesPerPage,
@@ -74,6 +75,7 @@ export default function ListMovies() {
   return (
     <>
       <div>
+        <FadeSlide/>
         <div>
           <h2 className="text-4xl text-[#0097b2] font-bold font-acthand">
             Top Rated Movies
@@ -123,7 +125,7 @@ export default function ListMovies() {
                 type="button"
                 onClick={handlePrevTopRated}
                 disabled={pageTopRated === 0}
-                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-2 rounded-xl disabled:opacity-50"
+                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-2 rounded-xl disabled:opacity-50 hover:bg-[#007a91] cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +150,7 @@ export default function ListMovies() {
                 disabled={
                   (pageTopRated + 1) * moviesPerPage >= moviesTopRated.length
                 }
-                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-3 rounded-xl disabled:opacity-50"
+                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-3 rounded-xl disabled:opacity-50 hover:bg-[#007a91] cursor-pointer"
               >
                 Next
                 <svg
@@ -219,7 +221,7 @@ export default function ListMovies() {
                 type="button"
                 onClick={handlePrevPopulaire}
                 disabled={pagePopulaire === 0}
-                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-2 rounded-xl disabled:opacity-50"
+                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-2 rounded-xl disabled:opacity-50 hover:bg-[#007a91] cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +246,7 @@ export default function ListMovies() {
                 disabled={
                   (pagePopulaire + 1) * moviesPerPage >= moviesPopulaire.length
                 }
-                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-3 rounded-xl disabled:opacity-50"
+                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-3 rounded-xl disabled:opacity-50 hover:bg-[#007a91] cursor-pointer"
               >
                 Next
                 <svg
@@ -315,7 +317,7 @@ export default function ListMovies() {
                 type="button"
                 onClick={handlePrevUpcoming}
                 disabled={pageUpcoming === 0}
-                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-2 rounded-xl disabled:opacity-50"
+                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-2 rounded-xl disabled:opacity-50 hover:bg-[#007a91] cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -340,7 +342,7 @@ export default function ListMovies() {
                 disabled={
                   (pageUpcoming + 1) * moviesPerPage >= moviesUpcoming.length
                 }
-                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-3 rounded-xl disabled:opacity-50"
+                className="flex flex-row text-lg font-semibold items-center bg-[#0097b2] text-white py-2 px-3 rounded-xl disabled:opacity-50 hover:bg-[#007a91] cursor-pointer"
               >
                 Next
                 <svg
@@ -362,7 +364,7 @@ export default function ListMovies() {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 }
