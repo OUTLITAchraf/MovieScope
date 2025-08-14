@@ -19,7 +19,7 @@ export default function NavBar({onSearch }) {
                 <div className="flex justify-between items-center">
                     <a href="/" className='flex items-center flex-row'>
                         <img src={Logo} alt="LogoSite" className='w-[50px] h-[50px] lg:w-[70px] lg:h-[70px]' />
-                        <span className='font-apricots text-4xl lg:text-5xl text-[#0097b2] pb-3 lg:pb-5'>moviescope</span>
+                        <span className='font-apricots text-4xl lg:text-5xl text-white pb-3 lg:pb-5'>moviescope</span>
                     </a>
 
                     {/* Toggle button visible on small screens only */}
@@ -63,7 +63,7 @@ export default function NavBar({onSearch }) {
                     <div className='flex flex-col text-white text-lg font-semibold ml-2 space-y-5 lg:flex-row lg:mx-60 lg:space-y-0 lg:space-x-15'>
                         <a href="/" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>Home</a>
                         <a href="" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>List Movies</a>
-                        <a href="" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>About</a>
+                        <a href="/about" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>About</a>
                     </div>
 
                     <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-2 mt-4 lg:mt-0">

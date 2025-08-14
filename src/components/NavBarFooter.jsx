@@ -6,7 +6,7 @@ function NavBarFooter() {
     <>
       <div className='flex flex-row items-center'>
         <img src={Logo} alt="LOGO" className='w-[50px] h-[50px] lg:w-[70px] lg:h-[70px]' />
-        <p className='text-4xl text-[#0097b2] font-apricots'>moviescope</p>
+        <p className='text-4xl text-white mb-3 font-apricots'>moviescope</p>
       </div>
       <p className='mt-10'>&copy; 2025 MovieScope</p>
       <div>

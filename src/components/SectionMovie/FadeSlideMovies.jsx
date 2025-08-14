@@ -1,19 +1,30 @@
 import Slider from "react-slick";
 import React, { useEffect, useState } from "react";
-import './css/SliderMovies.css'
+import '../css/SliderMovies.css'
 
-function FadeSlide() {
+function FadeSlideMovies() {
     const api_key = import.meta.env.VITE_API_KEY;
     const BASE_URL = "https://api.themoviedb.org/3";
     const API_URL_MOVIES_TRENDING = `${BASE_URL}/trending/movie/week?api_key=${api_key}`;
     const [moviesTrending, setMoviesTrending] = useState([]);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(()=>{
+        setLoading(true);
         fetch(API_URL_MOVIES_TRENDING)
         .then((res) => res.json())
         .then((data) => setMoviesTrending(data.results))
-        .catch((err) => console.log(err));
-    },[])
+        .finally(() => setLoading(false));
+    },[API_URL_MOVIES_TRENDING])
+
+    if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="w-16 h-16 border-4 border-t-[#0097b2] border-gray-300 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
     const settings = {
         dots: true,
@@ -45,7 +56,7 @@ function FadeSlide() {
                                 className="w-25 h-38 rounded-xl"
                             />
                             <div className="mx-5 mt-3">
-                                <h2 className="text-[#0097b2] text-2xl font-bold">
+                                <h2 className="text-[#0097b2] text-3xl font-bold">
                                     {movietr.title}
                                 </h2>
                                 <p className="text-white text-sm mt-3">
@@ -92,7 +103,7 @@ function FadeSlide() {
                                 </div>
                             </div>
                             <a
-                                href=""
+                                href={`/detail/${movietr.id}`}
                                 className="bg-[#0097b2] text-white mt-auto py-2 px-3 rounded-xl"
                             >
                                 Detail
@@ -105,4 +116,4 @@ function FadeSlide() {
     );
 }
 
-export default FadeSlide;
+export default FadeSlideMovies;
