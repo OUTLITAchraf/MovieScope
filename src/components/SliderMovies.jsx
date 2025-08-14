@@ -1,5 +1,6 @@
 import Slider from "react-slick";
 import React, { useEffect, useState } from "react";
+import './css/SliderMovies.css'
 
 function FadeSlide() {
     const api_key = import.meta.env.VITE_API_KEY;
@@ -19,9 +20,12 @@ function FadeSlide() {
         fade: true,
         infinite: true,
         speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        waitForAnimate: false
+        waitForAnimate: false,
+        arrows: false
     };
     return (
         <div className="slider-container w-4xl mx-auto my-10 rounded-2xl">
