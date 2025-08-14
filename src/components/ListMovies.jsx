@@ -14,22 +14,34 @@ export default function ListMovies() {
   const [pagePopulaire, setPagePopulaire] = useState(0);
   const [pageUpcoming, setPageUpcoming] = useState(0);
   const moviesPerPage = 5;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(API_URL_MOVIES_TOP_RATED)
-      .then((res) => res.json())
-      .then((data) => setMoviesTopRated(data.results))
-      .catch((err) => console.log(err));
+    const fetchMovies = async () => {
+      setLoading(true);
+      try {
+        const [topRatedRes, popularRes, upcomingRes] = await Promise.all([
+          fetch(API_URL_MOVIES_TOP_RATED),
+          fetch(API_URL_MOVIES_POPULAIRE),
+          fetch(API_URL_MOVIES_UPCOMING),
+        ]);
 
-    fetch(API_URL_MOVIES_POPULAIRE)
-      .then((res) => res.json())
-      .then((data) => setMoviesPopulaire(data.results))
-      .catch((err) => console.log(err));
+        const topRatedData = await topRatedRes.json();
+        const popularData = await popularRes.json();
+        const upcomingData = await upcomingRes.json();
 
-    fetch(API_URL_MOVIES_UPCOMING)
-      .then((res) => res.json())
-      .then((data) => setMoviesUpcoming(data.results))
-      .catch((err) => console.log(err));
+        setMoviesTopRated(topRatedData.results);
+        setMoviesPopulaire(popularData.results);
+        setMoviesUpcoming(upcomingData.results);
+
+      } catch (err) {
+        console.error("Failed to fetch movies:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovies();
   }, []);
 
   const currentMoviesTopRated = moviesTopRated.slice(
@@ -72,10 +84,18 @@ export default function ListMovies() {
     if (pageUpcoming > 0) setPageUpcoming((prev) => prev - 1);
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="w-16 h-16 border-4 border-t-[#0097b2] border-gray-300 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div>
-        <FadeSlide/>
+        <FadeSlide />
         <div className="pt-10">
           <h2 className="text-4xl text-[#0097b2] font-bold font-acthand">
             Top Rated Movies
