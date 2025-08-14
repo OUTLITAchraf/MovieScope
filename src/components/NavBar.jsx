@@ -66,14 +66,14 @@ export default function NavBar({onSearch }) {
                         <a href="/about" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>About</a>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-2 mt-4 lg:mt-0">
+                    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 mt-4 sm:mt-0">
                         <input
                             type="text"
-                            className="lg:w-62 py-2 px-3 border border-white text-white focus:outline-2 focus:outline-[#0097b2] focus:border-[#0097b2] rounded-2xl bg-transparent"
+                            className="w-full sm:w-48 md:w-62 py-2 px-3 border border-white text-white focus:outline-2 focus:outline-[#0097b2] focus:border-[#0097b2] rounded-2xl bg-transparent"
                             placeholder="Searching a movie ..."
                             onChange={(e) => setMovieName(e.target.value)}
                         />
-                        <button 
+                        <button
                         onClick={handleSearch}
                         className="flex flex-row items-center justify-center text-lg text-white gap-2 bg-[#0097b2] py-2 px-3 rounded-2xl hover:bg-[#00697b] cursor-pointer">
                             <svg
