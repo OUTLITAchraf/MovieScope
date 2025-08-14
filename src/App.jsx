@@ -15,7 +15,7 @@ function App() {
         <main className="mx-16 my-10">
           <Routes>
             <Route path="/" element={<ListMovies/>}/>
-            <Route path="/detail/:index" element={<DetailMovie/>}/>
+            <Route path="/detail/:id" element={<DetailMovie/>}/>
             <Route path="/search/:query" element={<SearchMovie/>}/>
           </Routes>
         </main>
