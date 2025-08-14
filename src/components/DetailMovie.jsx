@@ -50,22 +50,42 @@ function DetailMovie() {
     infinite: true,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 2
+        }
+      }
+    ]
   };
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
         {movieDetail.poster_path && (
           <img
             src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`}
             alt={movieDetail.title}
-            className="w-[360px] rounded-lg"
+            className="w-full md:w-[360px] rounded-lg mb-6 md:mb-0 md:mr-6"
           />
         )}
-        <div className="mx-5 space-y-5">
+        <div className="space-y-5">
           <div className="space-y-2">
-            <h2 className="text-5xl font-bold text-white">{movieDetail.title}</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{movieDetail.title}</h2>
             <p className="text-sm text-gray-400 font-semibold">
               {movieDetail.tagline}
             </p>
@@ -74,21 +94,21 @@ function DetailMovie() {
             <h3 className="text-white text-lg font-semibold">Description</h3>
             <p className="text-gray-400 text-base">{movieDetail.overview}</p>
           </div>
-          <div className="flex flex-row">
-            <div className="ml-2 space-y-2">
+          <div className="flex flex-col space-y-2 sm:flex-row sm:space-x-10 sm:space-y-0 gap-4">
+            <div className="space-y-2">
               <h3 className="text-white text-lg font-semibold">Genres</h3>
-              <div className="flex flex-row">
+              <div className="flex flex-wrap gap-2">
                 {genresMovie.map((genre) => (
                   <p
                     key={genre.id}
-                    className="mr-2 bg-[#0097b2] py-1 px-3 text-white rounded-xl"
+                    className="bg-[#0097b2] py-1 px-3 text-white rounded-xl"
                   >
                     {genre.name}
                   </p>
                 ))}
               </div>
             </div>
-            <div className="ml-20 space-y-2">
+            <div className="space-y-2">
               <h3 className="text-white text-lg font-semibold">Rate</h3>
               <p className="flex flex-row gap-2 text-white text-xl font-semibold items-center">
                 <svg
@@ -108,7 +128,7 @@ function DetailMovie() {
                 {Math.floor(movieDetail.vote_average * 10) / 10}
               </p>
             </div>
-            <div className="ml-20 space-y-2">
+            <div className="space-y-2">
               <h3 className="text-white text-lg font-semibold">Popularity</h3>
               <p className="flex flex-row gap-2 text-white text-xl font-semibold items-center">
                 <svg
@@ -129,7 +149,7 @@ function DetailMovie() {
                 {Math.floor(movieDetail.popularity * 100) / 100}
               </p>
             </div>
-            <div className="ml-20 space-y-2">
+            <div className="space-y-2">
               <h3 className="text-white text-lg font-semibold">Duration</h3>
               <p className="flex flex-row gap-2 text-white text-xl font-semibold items-center">
                 <svg
@@ -190,9 +210,9 @@ function DetailMovie() {
           </p>
         </div>
       </div>
-      <div>
+      <div className="px-4 sm:px-6">
         <h3 className="text-4xl font-bold text-white mt-10 mb-7">Movie Images</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {movieImages.slice(0, 8).map((img, index) => {
             if (index === 7 && movieImages.length > 8) {
               return (
@@ -222,21 +242,21 @@ function DetailMovie() {
           })}
         </div>
       </div>
-      <div className="slider-container mt-10">
+      <div className="slider-container mt-10 px-4 sm:px-6">
         <h3 className="text-4xl font-bold text-white mb-7">Suggestion Movies</h3>
         <Slider {...settings}>
           {movieRecommendations.map((movie) => (
-            <div key={movie.id} className="px-2">
-              <div className="rounded-xl bg-[#0d0d0d] border-2 border-gray-700 overflow-hidden">
+            <div key={movie.id} className="px-1 sm:px-2">
+              <div className="rounded-xl bg-[#0d0d0d] px-2 pt-2 border-2 border-gray-700 overflow-hidden hover:border-2 hover:border-gray-300 transition-transform duration-200">
                 <a href={`/detail/${movie.id}`}>
                   <img
                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-[200px] object-cover m-2 rounded-xl"
+                    className="w-full object-cover rounded-xl"
                   />
                 </a>
                 <div className="flex justify-between items-center text-white p-2">
-                  <h3 className="font-bold text-sm truncate mr-4">{movie.title}</h3>
+                  <h3 className="font-bold text-sm truncate mr-2 sm:mr-4">{movie.title}</h3>
                   <p className="flex items-center text-sm font-semibold gap-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
