@@ -5,7 +5,7 @@ import '../css/SliderMovies.css'
 function FadeSlideMovies() {
     const api_key = import.meta.env.VITE_API_KEY;
     const BASE_URL = "https://api.themoviedb.org/3";
-    const API_URL_MOVIES_TRENDING = `${BASE_URL}/trending/movie/week?api_key=${api_key}`;
+    const API_URL_MOVIES_TRENDING = `${BASE_URL}/trending/movie/day?api_key=${api_key}`;
     const [moviesTrending, setMoviesTrending] = useState([]);
     const [loading, setLoading] = useState(true);
 
