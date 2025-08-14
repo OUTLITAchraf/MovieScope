@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { data, useParams } from "react-router-dom";
+import Slider from "react-slick";
+
 
 function DetailMovie() {
 
@@ -9,9 +11,11 @@ function DetailMovie() {
   const BASE_URL = "https://api.themoviedb.org/3";
   const API_URL_MOVIE_DETAIL = `${BASE_URL}/movie/${id}?api_key=${api_key}`;
   const API_URL_MOVIE_IMAGES = `${BASE_URL}/movie/${id}/images?api_key=${api_key}`
+  const API_URL_MOVIE_RECOMMENDATIONS = `${BASE_URL}/movie/${id}/recommendations?api_key=${api_key}`
 
   const [movieDetail, setMovieDetail] = useState({});
   const [movieImages, setMovieImages] = useState([]);
+  const [movieRecommendations, setMovieRecommendations] = useState([]);
 
   useEffect(() => {
 
@@ -23,10 +27,11 @@ function DetailMovie() {
       .then((res) => res.json())
       .then((data) => setMovieImages(data.backdrops))
 
-  }, [API_URL_MOVIE_DETAIL]);
+    fetch(API_URL_MOVIE_RECOMMENDATIONS)
+      .then((res) => res.json())
+      .then((data) => setMovieRecommendations(data.results))
 
-  console.log(movieImages);
-
+  }, []);
 
   const genresMovie = movieDetail.genres || [];
   const productionCountries = movieDetail.production_countries || [];
@@ -39,6 +44,14 @@ function DetailMovie() {
     const mins = minutes % 60;
     return `${hours}h ${mins}m`;
   }
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1
+  };
 
   return (
     <>
@@ -208,6 +221,43 @@ function DetailMovie() {
             );
           })}
         </div>
+      </div>
+      <div className="slider-container mt-10">
+        <h3 className="text-4xl font-bold text-white mb-7">Suggestion Movies</h3>
+        <Slider {...settings}>
+          {movieRecommendations.map((movie) => (
+            <div key={movie.id} className="px-2">
+              <div className="rounded-xl bg-[#0d0d0d] border-2 border-gray-700 overflow-hidden">
+                <a href={`/detail/${movie.id}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-[200px] object-cover m-2 rounded-xl"
+                  />
+                </a>
+                <div className="flex justify-between items-center text-white p-2">
+                  <h3 className="font-bold text-sm truncate mr-4">{movie.title}</h3>
+                  <p className="flex items-center text-sm font-semibold gap-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="yellow"
+                      stroke="yellow"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+                    </svg>
+                    {Math.floor(movie.vote_average * 10) / 10}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
     </>
   );
