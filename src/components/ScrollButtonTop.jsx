@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export default function ScrollButtonTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show button when scroll is beyond 300px
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -17,7 +16,6 @@ export default function ScrollButtonTop() {
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  // Scroll to top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

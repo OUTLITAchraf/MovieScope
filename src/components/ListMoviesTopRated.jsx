@@ -19,7 +19,7 @@ function ListMoviesTopRated() {
           const data = await res.json();
           allMovies.push(...data.results);
         }
-        setMoviesTop100Rated(allMovies); // Now contains top 100 movies
+        setMoviesTop100Rated(allMovies);
       } catch (error) {
         console.error("Error fetching movies:", error);
       } finally {
@@ -41,7 +41,7 @@ function ListMoviesTopRated() {
   return (
     <div>
       <ScrollButtonTop />
-      <h2 className="text-xl lg:text-5xl font-acthand font-extrabold lg:font-bold text-[#0097b2] my-10">
+      <h2 className="text-xl lg:text-5xl font-acthand font-extrabold lg:font-bold text-[#0097b2] my-10 lg:mt-15 lg:mb-13">
         Top 100 Populare Movies
       </h2>
       <div className="mx-5 lg:mx-10 border-1 border-gray-300">
