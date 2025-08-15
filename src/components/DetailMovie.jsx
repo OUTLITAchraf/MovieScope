@@ -216,9 +216,9 @@ function DetailMovie() {
           </p>
         </div>
       </div>
-      <div className="px-4 sm:px-6">
+      <div className="px-4 sm:px-0">
         <h3 className="text-4xl font-bold text-white mt-10 mb-7">Movie Images</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 sm:px-5 gap-4">
           {movieImages.slice(0, 8).map((img, index) => {
             if (index === 7 && movieImages.length > 8) {
               return (
@@ -248,9 +248,9 @@ function DetailMovie() {
           })}
         </div>
       </div>
-      <div className="slider-container mt-10 px-4 sm:px-6">
+      <div className="slider-container mt-10 px-4 sm:px-0">
         <h3 className="text-4xl font-bold text-white mb-7">Suggestion Movies</h3>
-        <Slider {...settings}>
+        <Slider {...settings} className="sm:mx-5">
           {movieRecommendations.map((movie) => (
             <div key={movie.id} className="px-1 sm:px-2">
               <div className="rounded-xl bg-[#0d0d0d] px-2 pt-2 border-2 border-gray-700 overflow-hidden hover:border-2 hover:border-gray-300 transition-transform duration-200">

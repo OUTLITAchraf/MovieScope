@@ -55,7 +55,7 @@ function FadeSlideMovies() {
                         <img
                             src={movietr.backdrop_path
                                 ? `https://image.tmdb.org/t/p/original/${movietr.backdrop_path}`
-                                : 'https://placehold.co/1280x720/000000/FFFFFF?text=Poster+Not+Found'}
+                                : 'https://placehold.co/1280x720/000000/FFFFFF?text=Backdrop+Not+Found'}
                             alt={movietr.title}
                             className="w-full h-full object-cover rounded-lg"
                         />
