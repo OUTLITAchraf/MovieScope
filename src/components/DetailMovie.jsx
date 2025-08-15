@@ -59,15 +59,9 @@ function DetailMovie() {
         }
       },
       {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 3
-        }
-      },
-      {
         breakpoint: 640,
         settings: {
-          slidesToShow: 2
+          slidesToShow: 3
         }
       }
     ]
@@ -263,9 +257,9 @@ function DetailMovie() {
                     className="w-full object-cover rounded-xl"
                   />
                 </a>
-                <div className="flex justify-between items-center text-white p-2">
-                  <h3 className="font-bold text-sm truncate mr-2 sm:mr-4">{movie.title}</h3>
-                  <p className="flex items-center text-sm font-semibold gap-1">
+                <div className="flex flex-col lg:flex-row  justify-between text-white p-2">
+                  <h3 className="font-bold text-xs truncate mr-2 sm:mr-4">{movie.title}</h3>
+                  <p className="flex items-center mt-2 lg:mt-0 text-xs font-semibold gap-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
