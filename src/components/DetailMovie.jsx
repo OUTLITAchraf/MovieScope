@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { data, useParams } from "react-router-dom";
-import Slider from "react-slick";
-
+import { useParams } from "react-router-dom";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 function DetailMovie() {
 
@@ -31,7 +33,7 @@ function DetailMovie() {
       .then((res) => res.json())
       .then((data) => setMovieRecommendations(data.results))
 
-  }, []);
+  }, [id]);
 
   const genresMovie = movieDetail.genres || [];
   const productionCountries = movieDetail.production_countries || [];
@@ -44,28 +46,6 @@ function DetailMovie() {
     const mins = minutes % 60;
     return `${hours}h ${mins}m`;
   }
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4
-        }
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 3
-        }
-      }
-    ]
-  };
 
   return (
     <>
@@ -244,42 +224,58 @@ function DetailMovie() {
       </div>
       <div className="slider-container mt-10 px-4 sm:px-0">
         <h3 className="text-4xl font-bold text-white mb-7">Suggestion Movies</h3>
-        <Slider {...settings} className="sm:mx-5">
+        <Swiper
+          modules={[Navigation]}
+          navigation={true}
+          breakpoints={{
+            400: {
+              slidesPerView: 3,
+              spaceBetween: 3
+            },
+            1024: {
+              slidesPerView: 6,
+              spaceBetween:10
+            }
+          }}
+          className="sm:mx-5"
+        >
           {movieRecommendations.map((movie) => (
-            <div key={movie.id} className="px-1 sm:px-2">
-              <div className="rounded-xl bg-[#0d0d0d] px-2 pt-2 border-2 border-gray-700 overflow-hidden hover:border-2 hover:border-gray-300 transition-transform duration-200">
-                <a href={`/detail/${movie.id}`}>
-                  <img
-                    src={movie.poster_path
-                      ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                      : 'https://placehold.co/200x300/000000/FFFFFF?text=Poster+Not+Found'}
-                    alt={movie.title}
-                    className="w-full object-cover rounded-xl"
-                  />
-                </a>
-                <div className="flex flex-col lg:flex-row  justify-between text-white p-2">
-                  <h3 className="font-bold text-xs truncate mr-2 sm:mr-4">{movie.title}</h3>
-                  <p className="flex items-center mt-2 lg:mt-0 text-xs font-semibold gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="yellow"
-                      stroke="yellow"
-                      strokeWidth="1"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
-                    </svg>
-                    {Math.floor(movie.vote_average * 10) / 10}
-                  </p>
+            <SwiperSlide key={movie.id}>
+              <div className="px-1 sm:px-2">
+                <div className="rounded-xl bg-[#0d0d0d] px-2 pt-2 border-2 border-gray-700 overflow-hidden hover:border-2 hover:border-gray-300 transition-transform duration-200">
+                  <a href={`/detail/${movie.id}`}>
+                    <img
+                      src={movie.poster_path
+                        ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                        : 'https://placehold.co/200x300/000000/FFFFFF?text=Poster+Not+Found'}
+                      alt={movie.title}
+                      className="w-full object-cover rounded-xl"
+                    />
+                  </a>
+                  <div className="flex flex-col lg:flex-row  justify-between text-white p-2">
+                    <h3 className="font-bold text-xs truncate mr-2 sm:mr-4">{movie.title}</h3>
+                    <p className="flex items-center mt-2 lg:mt-0 text-xs font-semibold gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="yellow"
+                        stroke="yellow"
+                        strokeWidth="1"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+                      </svg>
+                      {Math.floor(movie.vote_average * 10) / 10}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
     </>
   );

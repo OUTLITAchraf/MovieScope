@@ -1,10 +1,43 @@
-/* Active dot */
-.slick-dots li.slick-active button:before {
-  color: #0097b2; /* Your active color */
+/* Customize navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3); /* optional background */
 }
 
-/* Inactive dots */
-.slick-dots li button:before {
-  color: white; /* Your inactive color */
-  opacity: 0.5; /* Optional */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Customize pagination */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 1rem !important;
+  bottom: 0 !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.5;
+  width: 12px;
+  height: 12px;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #0097b2;
+  opacity: 1;
+}
+
+/* Make pagination smaller on phone screens */
+@media (max-width: 480px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none; /* optional background */
+  }
+  .swiper-pagination .swiper-pagination-bullet,
+  .swiper-pagination .swiper-pagination-bullet-active {
+    width: 8px;
+    height: 8px;
+  }
 }
