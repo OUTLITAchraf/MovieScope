@@ -18,7 +18,7 @@ MovieScope is a modern movie discovery application built with React and Vite. It
 - **React Router** - Declarative routing for React
 - **Tailwind CSS** - Utility-first CSS framework
 - **TMDB API** - Movie database API for fetching movie information
-- **React Slick** - Carousel component for React
+- **Swiper** - Modern mobile touch slider for React
 
 ## Installation
 
@@ -82,6 +82,9 @@ The application is fully responsive and optimized for mobile devices:
 - Movie grids adjust to single column layout on mobile
 - Text sizes and icons are appropriately scaled for mobile viewing
 - Touch-friendly interface with proper spacing for mobile interactions
+- Movie recommendation sliders show 3 movies on phone screens for better visibility
+- Pagination controls are optimized for mobile with smaller dots on phone screens
+- Swiper sliders provide smooth touch navigation for carousels
 
 ## Available Scripts
 
