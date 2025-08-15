@@ -64,19 +64,19 @@ export default function NavBar({ onSearch }) {
                     <div className='flex flex-col text-white text-lg font-semibold ml-2 space-y-5 lg:flex-row lg:mx-60 lg:space-y-0 lg:space-x-15'>
                         <a href="/" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>Home</a>
                         <div
-                            className="lg:relative"
+                            className="lg:relative border-b-2 pb-1 lg:pb-0 lg:border-b-0"
                             onMouseEnter={() => setIsListOpen(true)}
                             onMouseLeave={() => setIsListOpen(false)}
                         >
                             <a
                                 href=""
-                                className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0 cursor-pointer'
+                                className='hover:text-[#0097b2] cursor-pointer'
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setIsListOpen(!isListOpen);
                                 }}
                             >
-                                List Movies
+                                Top Movies
                             </a>
                             {isListOpen && (
                                 <div className="lg:absolute left-0 mt-2 lg:mt-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:z-50">
@@ -84,7 +84,7 @@ export default function NavBar({ onSearch }) {
                                         <li>
                                             <a
                                                 href="/popular"
-                                                className="block text-sm py-2 px-4 border-b-1 lg:border-b-0 text-white hover:bg-[#0097b2] transition-colors duration-200"
+                                                className="block text-sm py-2 px-4 border-b-2 lg:border-b-0 text-white hover:bg-[#0097b2] transition-colors duration-200"
                                             >
                                                 Top 100 Popular Movies
                                             </a>
@@ -92,7 +92,7 @@ export default function NavBar({ onSearch }) {
                                         <li>
                                             <a
                                                 href="/top_rated"
-                                                className="block text-sm py-2 px-4 border-b-1 lg:border-b-0 text-white hover:bg-[#0097b2] transition-colors duration-200"
+                                                className="block text-sm py-2 px-4 lg:border-b-0 text-white hover:bg-[#0097b2] transition-colors duration-200"
                                             >
                                                 Top 100 Rated Movies
                                             </a>
