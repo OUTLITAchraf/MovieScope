@@ -5,8 +5,8 @@ import NavBarFooter from "./components/NavBarFooter"
 import DetailMovie from "./components/DetailMovie"
 import SearchMovie from "./components/SearchMovie"
 import About from "./components/About"
-import ListMoviesPopulare from "./components/ListMoviesPopulare"
-import ListMoviesTopRated from "./components/ListMoviesTopRated"
+import TopMoviesPopulare from "./components/TopMoviesPopulare"
+import TopMoviesTopRated from "./components/TopMoviesTopRated"
 
 function App() {
   return (
@@ -20,8 +20,8 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/detail/:id" element={<DetailMovie/>}/>
             <Route path="/search/:query" element={<SearchMovie/>}/>
-            <Route path="/popular" element={<ListMoviesPopulare/>}/>
-            <Route path="/top_rated" element={<ListMoviesTopRated/>}/>
+            <Route path="/popular" element={<TopMoviesPopulare/>}/>
+            <Route path="/top_rated" element={<TopMoviesTopRated/>}/>
             <Route path="/about" element={<About/>}/>
           </Routes>
         </main>

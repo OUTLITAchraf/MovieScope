@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import ScrollButtonTop from "./ScrollButtonTop";
 
-function ListMoviesTopRated() {
+function TopMoviesTopRated() {
   const api_key = import.meta.env.VITE_API_KEY;
 
-  const [moviesTop100Rated, setMoviesTop100Rated] = useState([]);
+  const [moviesTop100Popular, setMoviesTop100Popular] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,12 +14,12 @@ function ListMoviesTopRated() {
         const allMovies = [];
         for (let page = 1; page <= 5; page++) {
           const res = await fetch(
-            `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=${page}`
+            `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=en-US&page=${page}`
           );
           const data = await res.json();
           allMovies.push(...data.results);
         }
-        setMoviesTop100Rated(allMovies);
+        setMoviesTop100Popular(allMovies); 
       } catch (error) {
         console.error("Error fetching movies:", error);
       } finally {
@@ -40,12 +40,12 @@ function ListMoviesTopRated() {
 
   return (
     <div>
-      <ScrollButtonTop />
+      <ScrollButtonTop/>
       <h2 className="text-xl lg:text-5xl font-acthand font-extrabold lg:font-bold text-[#0097b2] my-10 lg:mt-15 lg:mb-13">
         Top 100 Populare Movies
       </h2>
       <div className="mx-5 lg:mx-10 border-1 border-gray-300">
-        {moviesTop100Rated.map((movie, index) => (
+        {moviesTop100Popular.map((movie, index) => (
           <div
             key={index}
             className="flex flex-row my-3 mx-3 lg:mx-10 items-center border-b-1 border-gray-400 p-3"
@@ -56,11 +56,11 @@ function ListMoviesTopRated() {
               className="w-20 lg:w-fit"
             />
             <div className="ml-3 lg:mx-5 space-y-3">
-              <h3 className="text-white text-sm lg:text-4xl font-bold">
-                <a href={`/detail/${movie.id}`} className="hover:border-b-2">
-                  {index + 1}. {movie.title}
-                </a>
-              </h3>
+                <h3 className="text-white text-sm lg:text-4xl font-bold">
+                  <a href={`/detail/${movie.id}`} className="hover:border-b-2">
+                    {index + 1}. {movie.title}
+                  </a>
+                </h3>
               <p className="text-gray-300 lg:text-lg font-semibold">
                 {movie.release_date.split("-")[0]}
               </p>
@@ -112,4 +112,4 @@ function ListMoviesTopRated() {
   );
 }
 
-export default ListMoviesTopRated;
+export default TopMoviesTopRated;
