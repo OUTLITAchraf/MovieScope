@@ -39,9 +39,9 @@ function FadeSlideMovies() {
         arrows: false,
         responsive: [
             {
-                breakpoint: 640, // phones
+                breakpoint: 640, 
                 settings: {
-                    dots: false // show dots on mobile devices
+                    dots: false 
                 }
             }
         ]
