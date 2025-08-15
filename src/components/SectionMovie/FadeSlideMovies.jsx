@@ -53,14 +53,18 @@ function FadeSlideMovies() {
                 {moviesTrending.map((movietr) => (
                     <div key={movietr.id} className="relative">
                         <img
-                            src={`https://image.tmdb.org/t/p/original/${movietr.backdrop_path}`}
+                            src={movietr.backdrop_path
+                                ? `https://image.tmdb.org/t/p/original/${movietr.backdrop_path}`
+                                : 'https://placehold.co/1280x720/000000/FFFFFF?text=Poster+Not+Found'}
                             alt={movietr.title}
                             className="w-full h-full object-cover rounded-lg"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/60 to-transparent rounded-lg" />
                         <div className="absolute bottom-0 flex flex-col sm:flex-row p-3 sm:p-4 w-full">
                             <img
-                                src={`https://image.tmdb.org/t/p/original/${movietr.poster_path}`}
+                                src={movietr.poster_path
+                                    ? `https://image.tmdb.org/t/p/original/${movietr.poster_path}`
+                                    : 'https://placehold.co/200x300/000000/FFFFFF?text=Poster+Not+Found'}
                                 alt=""
                                 className="w-[40px] h-[60px] sm:w-[50px] sm:h-[70px] lg:w-25 lg:h-38 rounded-xl self-start"
                             />
