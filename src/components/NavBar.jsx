@@ -2,16 +2,17 @@ import React, { useState } from 'react'
 import Logo from '../assets/MovieScope-Logo2.png'
 import { useNavigate } from 'react-router-dom';
 
-export default function NavBar({onSearch }) {
+export default function NavBar({ onSearch }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isListOpen, setIsListOpen] = useState(false);
     const [movieName, setMovieName] = useState("");
     const navigate = useNavigate();
 
     const handleSearch = () => {
-    if (movieName.trim() !== "") {
-      navigate(`/search/${encodeURIComponent(movieName)}`);
-    }
-  };
+        if (movieName.trim() !== "") {
+            navigate(`/search/${encodeURIComponent(movieName)}`);
+        }
+    };
 
     return (
         <>
@@ -62,7 +63,44 @@ export default function NavBar({onSearch }) {
                 >
                     <div className='flex flex-col text-white text-lg font-semibold ml-2 space-y-5 lg:flex-row lg:mx-60 lg:space-y-0 lg:space-x-15'>
                         <a href="/" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>Home</a>
-                        <a href="" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>List Movies</a>
+                        <div
+                            className="lg:relative"
+                            onMouseEnter={() => setIsListOpen(true)}
+                            onMouseLeave={() => setIsListOpen(false)}
+                        >
+                            <a
+                                href=""
+                                className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0 cursor-pointer'
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsListOpen(!isListOpen);
+                                }}
+                            >
+                                List Movies
+                            </a>
+                            {isListOpen && (
+                                <div className="lg:absolute left-0 mt-2 lg:mt-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:z-50">
+                                    <ul className="lg:bg-[#0d0d0d] lg:rounded-lg lg:shadow-lg lg:ml-35 lg:mt-5 lg:p-4 lg:w-64 space-y-2">
+                                        <li>
+                                            <a
+                                                href="/popular"
+                                                className="block text-sm py-2 px-4 border-b-1 lg:border-b-0 text-white hover:bg-[#0097b2] transition-colors duration-200"
+                                            >
+                                                Top 100 Popular Movies
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="/top_rated"
+                                                className="block text-sm py-2 px-4 border-b-1 lg:border-b-0 text-white hover:bg-[#0097b2] transition-colors duration-200"
+                                            >
+                                                Top 100 Rated Movies
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
                         <a href="/about" className='hover:text-[#0097b2] border-b-2 pb-1 lg:pb-0 lg:border-b-0'>About</a>
                     </div>
 
@@ -74,8 +112,8 @@ export default function NavBar({onSearch }) {
                             onChange={(e) => setMovieName(e.target.value)}
                         />
                         <button
-                        onClick={handleSearch}
-                        className="flex flex-row items-center justify-center text-lg text-white gap-2 bg-[#0097b2] py-2 px-3 rounded-2xl hover:bg-[#00697b] cursor-pointer">
+                            onClick={handleSearch}
+                            className="flex flex-row items-center justify-center text-lg text-white gap-2 bg-[#0097b2] py-2 px-3 rounded-2xl hover:bg-[#00697b] cursor-pointer">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -95,7 +133,7 @@ export default function NavBar({onSearch }) {
                         </button>
                     </div>
                 </div>
-            </nav>
+            </nav >
         </>
     )
 }
