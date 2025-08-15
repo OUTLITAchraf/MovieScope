@@ -76,9 +76,15 @@ function DetailMovie() {
   return (
     <>
       <div className="flex flex-col md:flex-row">
-        {movieDetail.poster_path && (
+        {movieDetail.poster_path ? (
           <img
             src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`}
+            alt={movieDetail.title}
+            className="w-full md:w-[360px] rounded-lg mb-6 md:mb-0 md:mr-6"
+          />
+        ) : (
+          <img
+            src="https://placehold.co/360x470/000000/FFFFFF?text=Poster+Not+Found"
             alt={movieDetail.title}
             className="w-full md:w-[360px] rounded-lg mb-6 md:mb-0 md:mr-6"
           />
@@ -250,7 +256,9 @@ function DetailMovie() {
               <div className="rounded-xl bg-[#0d0d0d] px-2 pt-2 border-2 border-gray-700 overflow-hidden hover:border-2 hover:border-gray-300 transition-transform duration-200">
                 <a href={`/detail/${movie.id}`}>
                   <img
-                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                    src={movie.poster_path
+                      ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                      : 'https://placehold.co/200x300/000000/FFFFFF?text=Poster+Not+Found'}
                     alt={movie.title}
                     className="w-full object-cover rounded-xl"
                   />

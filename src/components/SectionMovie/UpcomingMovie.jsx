@@ -50,7 +50,9 @@ function UpcomingMovie() {
                     >
                         <a href={`/detail/${movie.id}`}>
                             <img
-                                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                                src={movie.poster_path
+                                    ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+                                    : 'https://placehold.co/200x300/000000/FFFFFF?text=Poster+Not+Found'}
                                 alt={movie.title}
                                 className="w-full h-full object-cover transition-filter duration-300 group-hover:brightness-40"
                             />
